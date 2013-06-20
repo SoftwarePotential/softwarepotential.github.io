@@ -1,7 +1,4 @@
----
-title: Licensing-README
----
-Welcome to the SoftwarePotential.Licensing-&lt;MyProduct&gt;_&lt;MyVersion&gt;> NuGet Package for your Product
+Welcome to the SoftwarePotential.Licensing-&lt;MyProduct&gt;_&lt;MyVersion&gt; NuGet Package for your Product
 
 IMPORTANT: this package is intended to be used in concert with a SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet package, which must be installed for the code to compile correctly
 
