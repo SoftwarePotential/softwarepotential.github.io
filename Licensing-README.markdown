@@ -1,5 +1,5 @@
 ---
-Title: Licensing-README
+title: Licensing-README
 ---
 Welcome to the SoftwarePotential.Licensing-&lt;MyProduct&gt;_&lt;MyVersion&gt;> NuGet Package for your Product
 
