@@ -1,6 +1,3 @@
----
-title: Protection-README
----
 Welcome to the SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet Package for your Permutation
 
 NOTE: Licensing aspects of the Software Potential solution are covered in the Licensing README within the SoftwarePotential.Licensing-&lt;MyProduct&gt;_&lt;MyVersion&gt; NuGet Package for your Product
