@@ -10,17 +10,17 @@ It is NOT intended as a full product walkthrough or as a sample of a real applic
 - http://support.inishtech.com for the forum and other support materials
 
 ##1. Protecting code 
-```c#
-using Slps.ProtectionAttributes; // The [Protect] attribute lives in here
-
-[Protect] // Protect the code (but no License checks)
-public static void MySensitiveMethod()
-{
+    
+    using Slps.ProtectionAttributes; // The [Protect] attribute lives in here
+    
+    [Protect] // Protect the code (but no License checks)
+    public static void MySensitiveMethod()
+    {
     // Code Protector will Protect the method from ILDASM/ILSpy/Reflector etc. by transforming the code
     // No licensing restrictions are imposed on running this code
     // (This Attribute lives in Sp.Agent.dll in the namespace Slps.ProtectionAttributes - it is included in the Sp.Agent NuGet Package (which this package depends on)
-}
-```
+    }
+    
 
 ##2. Switching Protection off for some Build Configurations
 It is possible to prevent the Code Protection tool from being invoked as part of the build cycle and thus neutralize the effect of adding this package by adding the symbol **;SKIP\_SP\_PROTECT** to your Conditional Compilation Symbols in your Project options.
