@@ -2,7 +2,6 @@
 layout: github.io
 category: pages
 title: Licensing-README
-permalink: Licensing-README.html
 tagline: README for Software Potential Licensing NuGet package from Software Potential
 ---
 

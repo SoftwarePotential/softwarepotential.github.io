@@ -2,7 +2,6 @@
 layout: github.io
 category: pages
 title: SoftwarePotential.Configuration.Local.MultiUser-README
-permalink: SoftwarePotential.Configuration.Local.MultiUser-README.html
 tagline: README for SoftwarePotential.Configuration.Local.MultiUser NuGet package from Software Potential
 ---
 

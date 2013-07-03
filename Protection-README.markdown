@@ -2,7 +2,6 @@
 layout: github.io
 category: pages
 title: Protection-README
-permalink: Protection-README.html
 tagline: README for Software Potential Protection NuGet package from Software Potential
 ---
 
