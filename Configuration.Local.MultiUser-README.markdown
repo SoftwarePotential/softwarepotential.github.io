@@ -9,13 +9,16 @@ tagline: README for SoftwarePotential.Configuration.Local.MultiUser NuGet packag
 Welcome to the SoftwarePotential.Configuration.Local.MultiUser-&lt;PermutationShortCode&gt; NuGet Package.
 
 IMPORTANT: this package is intended to be used in concert with:
+
 * SoftwarePotential.Licensing-&lt;MyProduct&gt;-&lt;MyVersion&gt; NuGet package (must be installed for the code to compile correctly)
 * SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet package
 
-The code in this README is intended to provide a terse introduction to some key techniques related to configuring Software Potential-licensed applications, which  are meant to be used by multiple Windows users on a single machine.  (If your application is intended to be used by a single user on each machine, consider using SoftwarePotential.Configuration.Local.SingleUser-&lt;PermutationShortCode&gt; NuGet Package instead).
+The code in this README is intended to provide a terse introduction to some key techniques related to configuring Software Potential-licensed applications, which  are meant to be used by multiple Windows users on a single machine.  
+(If your application is intended to be used by a single user on each machine, consider using SoftwarePotential.Configuration.Local.SingleUser-&lt;PermutationShortCode&gt; NuGet Package instead).
 
 It is NOT intended as a full product walkthrough or as a sample of a real application. Please refer to:
-- [https://github.com/SoftwarePotential/samples/](https://github.com/SoftwarePotential/samples/) for example code
+
+- <https://github.com/SoftwarePotential/samples/> for example code
 - <http://support.inishtech.com/> for the forum and other support materials
 
 Shared license store overview
@@ -57,7 +60,9 @@ CONFIGURATION
 Verifying that the license store is initialized
 ------------------------------------------------
 We recommend calling this API method from your application's `Main` method/entry point:
+
 `SpAgent.Configuration.VerifyStoresInitialized();`
+
 This verifies that the initialization step outlined in **License Store Initialization** section has been performed.
 
 Customizing license store path

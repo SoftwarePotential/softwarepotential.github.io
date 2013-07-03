@@ -2,7 +2,7 @@
 layout: github.io
 category: pages
 title: Licensing-README
-permalink: Licensing-README-new.html
+permalink: Licensing-README.html
 tagline: README for Software Potential Licensing NuGet package from Software Potential
 ---
 
@@ -15,7 +15,8 @@ NOTE: The code protection aspects of the Software Potential solution are covered
 The code in this README is intended to provide a terse introduction to some key concepts employed in the Licensing APIs we expose.
 
 It is NOT intended as a full product walkthrough or as a sample of a real application. Please refer to:
-- [https://github.com/SoftwarePotential/samples/](https://github.com/SoftwarePotential/samples/) for example code
+
+- <https://github.com/SoftwarePotential/samples/> for example code
 - <http://support.inishtech.com/> for the forum and other support materials
 
 KEY NAMESPACES
