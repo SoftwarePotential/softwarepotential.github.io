@@ -1,19 +1,30 @@
-Welcome to the SoftwarePotential.Licensing-&lt;MyProduct&gt;_&lt;MyVersion&gt; NuGet Package for your Product
+---
+layout: github.io
+category: pages
+title: Licensing-README
+permalink: Licensing-README-new.html
+tagline: README for Software Potential Licensing NuGet package from Software Potential
+---
+
+Welcome to the SoftwarePotential.Licensing-&lt;MyProduct&gt;\_&lt;MyVersion&gt; NuGet Package for your Product
 
 IMPORTANT: this package is intended to be used in concert with a SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet package, which must be installed for the code to compile correctly
+
+NOTE: The code protection aspects of the Software Potential solution are covered in the [Protection-README](Protection-README.html) within the SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet Package for your Permutation.
 
 The code in this README is intended to provide a terse introduction to some key concepts employed in the Licensing APIs we expose.
 
 It is NOT intended as a full product walkthrough or as a sample of a real application. Please refer to:
-
-- <a href="https://github.com/SoftwarePotential/samples">https://github.com/SoftwarePotential/samples</a> for example code
-- <a href="http://support.inishtech.com/">http://support.inishtech.com/</a> for the forum and other support materials
+- [https://github.com/SoftwarePotential/samples/](https://github.com/SoftwarePotential/samples/) for example code
+- <http://support.inishtech.com/> for the forum and other support materials
 
 KEY NAMESPACES
 ==============
+```c#
     using Sp.Agent; // Most Sp.Agent licensing APIs live in this namespace
     using Slps.ProtectionAttributes; // The [Protect] attribute lives in here
     using System.Linq; // Many of our APIs yield collections etc. that are intended to work well with LINQ
+```
 
 ATTRIBUTES FOR PROTECTION ONLY 
 =====================================================================================================
@@ -30,7 +41,7 @@ public static void MySensitiveMethod()
     // (This Attribute lives in Sp.Agent.dll in the namespace Slps.ProtectionAttributes - it is included in the Sp.Agent NuGet Package but it is typically installed via by the 'Sp.Protection-<PermutationShortCode> NuGet Package )
 }
 ```
-    
+
 ATTRIBUTES FOR LICENSING AND PROTECTION
 =======================================
 
@@ -124,9 +135,9 @@ NOTE: If alternately one considered the logic in GenerateReport() (above) to be 
 1. Extract the section doing the 10000 iterations as another Method
 2. Apply either one or the other of the following protection attributes
 	
-	a) **[Protect]** - if you consider the general flow logic to be sensitive (but have placed appropriate License checks / attributes within code being triggered by this controlling logic) OR
+	a) **\[Protect\]** - if you consider the general flow logic to be sensitive (but have placed appropriate License checks / attributes within code being triggered by this controlling logic) OR
 
-	b) **[MyProduct_1.License]** - if, in addition to (a) you also consider it critical that a Valid License is held to be able to run this controlling logic
+	b) **\[MyProduct_1.License\]** - if, in addition to (a) you also consider it critical that a Valid License is held to be able to run this controlling logic
 
 3. Provisioning/Upgrading/Warning about Expiration of Licenses etc.
 -------------------------------------------------------------------
