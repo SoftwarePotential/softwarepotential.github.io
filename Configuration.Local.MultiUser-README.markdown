@@ -1,3 +1,11 @@
+---
+layout: github.io
+category: pages
+title: SoftwarePotential.Configuration.Local.MultiUser-README
+permalink: SoftwarePotential.Configuration.Local.MultiUser-README.html
+tagline: README for SoftwarePotential.Configuration.Local.MultiUser NuGet package from Software Potential
+---
+
 Welcome to the SoftwarePotential.Configuration.Local.MultiUser-&lt;PermutationShortCode&gt; NuGet Package.
 
 IMPORTANT: this package is intended to be used in concert with:
