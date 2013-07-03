@@ -1,0 +1,15 @@
+---
+layout: github.io
+category: pages
+title: Home
+---
+
+<ul>
+{% for page in site.pages  %}
+	{% if page.title contains 'README' %}
+	<li>
+		<a href="{{page.url}}">{{ page.title }}</a>
+	</li>
+	{% endif %}
+{% endfor %}
+</ul>
