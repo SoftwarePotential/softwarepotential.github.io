@@ -12,7 +12,7 @@ IMPORTANT: this package is intended to be used in concert with:
 * SoftwarePotential.Licensing-&lt;MyProduct&gt;-&lt;MyVersion&gt; NuGet package (must be installed for the code to compile correctly)
 * SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet package
 
-The code in this README is intended to provide a terse introduction to some key techniques related to configuring Software Potential-licensed applications, which  are meant to be used by multiple Windows users on a single machine.  
+The code in this README is intended to provide a terse introduction to some key techniques related to configuring Software Potential-licensed applications, which can be used by multiple Windows users on each target machine.  
 (If your application is intended to be used by a single user on each machine, consider using SoftwarePotential.Configuration.Local.SingleUser-&lt;PermutationShortCode&gt; NuGet Package instead).
 
 It is NOT intended as a full product walkthrough or as a sample of a real application. Please refer to:
