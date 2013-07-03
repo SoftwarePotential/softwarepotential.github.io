@@ -10,12 +10,12 @@ It is NOT intended as a full product walkthrough or as a sample of a real applic
 - <a href="https://github.com/SoftwarePotential/samples">https://github.com/SoftwarePotential/samples</a> for example code
 - <a href="http://support.inishtech.com/">http://support.inishtech.com/</a> for the forum and other support materials
 
-Shared license store - an overview
+Shared license store overview
 ----------------------------------
 In a multi-user scenario, the licenses are stored in a shared application data location, e.g. ``C:\ProgramData\MyCompany\MyProduct\MyVersion``
 
 The license store needs to be accessible by all users of the application on a given machine. 
-Therefore an explicit store initialization step is needed as part of application deployment (as outlined in ''License Store Initialization'') ).
+Therefore an explicit store initialization step is needed as part of application deployment (as outlined in **License Store Initialization** section) ).
 
 LICENSE STORE INITIALIZATION
 ============================
@@ -31,10 +31,10 @@ This command needs to be called from your installer / installation script.
 
 1.2. Employing a command-line installation option in the application
 ---------------------------------------------------------------------
-* Add a command-line installation option to your application (e.g. "`-install`" )
-* When the commandline option is supplied, have your Main method:
-** call `SpAgentConfiguration.InitializeSharedLicenseStorage()`</para>
-** exit to allow the rest of the installation to complete (i.e. the application should exit immediately)
+* Add a command-line installation option to your application (e.g. `-install` )
+* When the commandline option is supplied, have your `Main` method:
+  + call `SpAgentConfiguration.InitializeSharedLicenseStorage()`
+  + exit to allow the rest of the installation to complete (i.e. the application should exit immediately)
 * Have your installer / installation script call your application with the installation option:
   ``MyApplication.exe -install``
 
@@ -50,7 +50,7 @@ Verifying that the license store is initialized
 ------------------------------------------------
 We recommend calling this API method from your application's `Main` method/entry point:
 `SpAgent.Configuration.VerifyStoresInitialized();`
-This verifies that the initialization step outlined in ''License Store Initialization'' has been performed.
+This verifies that the initialization step outlined in **License Store Initialization** section has been performed.
 
 Customizing license store path
 -------------------------------
@@ -61,9 +61,9 @@ TROUBLESHOOTING
 Installation time
 -----------------
 * Sp.Agent.Storage.WritingStorageInaccessibleException
-The store initialization needs to run in a privileged user context. Make sure that the process has proper permissions
+  +  The store initialization needs to run in a privileged user context. Make sure that the process that runs store initialization has proper permissions.
   
 Application runtime
 --------------------
 * Sp.Agent.Storage.WritingStorageInaccessibleException
-
+  +  License Store isn't accessible for writing. Usually it means that the **License Store Initialization** step hasn't been performed.
