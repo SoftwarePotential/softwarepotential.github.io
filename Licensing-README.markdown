@@ -2,35 +2,30 @@
 layout: github.io
 category: pages
 title: Licensing-README
-tagline: README for Software Potential Licensing NuGet package from Software Potential
+tagline: Software Potential Licensing NuGet package README
 ---
 
-Welcome to the SoftwarePotential.Licensing-&lt;MyProduct&gt;\_&lt;MyVersion&gt; NuGet Package for your Product
+Welcome to the **SoftwarePotential.Licensing-&lt;MyProduct&gt;_&lt;MyVersion&gt;** NuGet Package for your Product
 
-IMPORTANT: this package is intended to be used in concert with a SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet package, which must be installed for the code to compile correctly
+**NOTE:** The code protection aspects of the Software Potential solution are covered in the [Protection-README](Protection-README.html) within the SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet Package for your Permutation.
 
-NOTE: The code protection aspects of the Software Potential solution are covered in the [Protection-README](Protection-README.html) within the SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet Package for your Permutation.
+The code in this README is intended to provide a terse introduction to some key concepts employed in the Licensing APIs we expose. It is NOT intended as a full product walkthrough or as a sample of a real application. Please refer to:
 
-The code in this README is intended to provide a terse introduction to some key concepts employed in the Licensing APIs we expose.
+- https://github.com/SoftwarePotential/samples for example code
+- http://support.inishtech.com/ for the Technical Support forum and other support materials
 
-It is NOT intended as a full product walkthrough or as a sample of a real application. Please refer to:
+# IMPORTANT: Implicit Package Dependencies REQUIRED TO MAKE THE CODE COMPILE
+This package is intended to be used in conjunction with other packages, which ***must be installed for the code to compile correctly***.
 
-- <https://github.com/SoftwarePotential/samples/> for example code
-- <http://support.inishtech.com/> for the forum and other support materials
+1. (always) a Permutation-relative package:-
+ * For your application's **main project/Composition Root responsible for managing the licensing configuration** add an appropriate *Configuration package*, i.e. one of the [**SoftwarePotential.Configuration.&lt;ApplicationStyle&gt;-&lt;PermutationShortCode&gt;** NuGet packages](http://docs.softwarepotential.com/index.html) 
+ * for **other projects** (e.g. if you have more than one project that uses Licensing) add the **SoftwarePotential-&lt;PermutationShortCode&gt;** package to each other project that needs access to product-relative functionality)
+1. (typically) a *Protection package*, i.e. add a [**SoftwarePotential.Protection-&lt;PermutationShortCode&gt;** NuGet package](http://docs.softwarepotential.com/Protection-README.html) to any projects in which you wish to apply protection
 
-KEY NAMESPACES
-==============
-```c#
-    using Sp.Agent; // Most Sp.Agent licensing APIs live in this namespace
-    using Slps.ProtectionAttributes; // The [Protect] attribute lives in here
-    using System.Linq; // Many of our APIs yield collections etc. that are intended to work well with LINQ
-```
+# Attributes For Protecting Code Without Requiring A License 
+(Provided by accompanying **SoftwarePotential.Protection-&lt;PermutationShortCode&gt;** NuGet package. See the [Protection README](http://docs.softwarepotential.com/Protection-README.html) for more information.)
 
-ATTRIBUTES FOR PROTECTION ONLY 
-=====================================================================================================
-(Provided by accompanying SoftwarePotential.Protection NuGet Package)
-0. Protecting code 
-------------------
+
 ```c#
 // (Actually provided by the SoftwarePotential.Protection NuGet Package, but commonly used together with License Checks)
 [Protect] // Protect the code (but no License checks)
@@ -41,12 +36,11 @@ public static void MySensitiveMethod()
     // (This Attribute lives in Sp.Agent.dll in the namespace Slps.ProtectionAttributes - it is included in the Sp.Agent NuGet Package but it is typically installed via by the 'Sp.Protection-<PermutationShortCode> NuGet Package )
 }
 ```
+    
+# Attributes For Licensing And Protection
 
-ATTRIBUTES FOR LICENSING AND PROTECTION
-=======================================
+## Requiring a Valid product license to run some code
 
-1. Requiring a Valid product license to run some code
------------------------------------------------------
 ```c#
 [MyProduct_1.License] // Protect the code + require a license for the product
 public static void MyMethodSubjectToHoldingAnyValidLicense()
@@ -57,8 +51,8 @@ public static void MyMethodSubjectToHoldingAnyValidLicense()
 }
 ```
 
-2. Requiring a specific Feature from the Software Potential Product Definition to be Available
-----------------------------------------------------------------------------------------------
+## Requiring a specific Feature from the Software Potential Product Definition to be Available
+
 ```c#
 [MyProduct_1.Features.GlobalAnalysis]
 public static void MyMethodSubjectToAvailabilityOfASpecificFeatureOnTheIssuedLicense()
@@ -69,11 +63,10 @@ public static void MyMethodSubjectToAvailabilityOfASpecificFeatureOnTheIssuedLic
     // (For each Feature that has been defined for the Product on the Software Potential Service, there will be an associated attribute generated into the SpProduct.cs file by the 'Sp.Product-<ProductName>_<ProductVersion> NuGet Package)
 }
 ```
-EXAMPLE CODE USING Sp.Agent APIs TO IMPLEMENT PROGRAMMATIC LICENSE CHECKS
-=========================================================================
+# Example Code Using Sp.Agent Apis To Implement Programmatic License Checks
 
-1. Querying License State
--------------------------
+## Querying License State
+
 ```c#
 // Example using Sp.Agent APIs to programmatically determine whether a Licensing Requirement can be fulfilled
 // The licensing check is enforced at the point where the Licensed behavior is actually triggered
@@ -106,8 +99,8 @@ public ScreenDefinition GenerateMenu()
 }
 ```
 
-2a. Using Licensing State To Guide Application Flow
---------------------------------------------------
+## Using Licensing State To Guide Application Flow
+
 ```c#
 // Example of a case where the behavior of some logic needs to be aware of the Current Licensing state
 // In this example, we have elected not to [Protect] this method. This might be on the basis that
@@ -127,10 +120,9 @@ public ReportOutput GenerateReport()
     return result;
 }
 ```
-2b. Protecting High Level Application Flow Logic
-------------------------------------------------
-NOTE: If alternately one considered the logic in GenerateReport() (above) to be sensitive, one might
+### Protecting High Level Application Flow Logic
 
+NOTE: If alternately one considered the logic in `GenerateReport()` (above) to be sensitive, one might
 
 1. Extract the section doing the 10000 iterations as another Method
 2. Apply either one or the other of the following protection attributes
@@ -139,8 +131,8 @@ NOTE: If alternately one considered the logic in GenerateReport() (above) to be 
 
 	b) **\[MyProduct_1.License\]** - if, in addition to (a) you also consider it critical that a Valid License is held to be able to run this controlling logic
 
-3. Provisioning/Upgrading/Warning about Expiration of Licenses etc.
--------------------------------------------------------------------
+## Provisioning/Upgrading/Warning about Expiration of Licenses etc.
+
 ```c#    
 // Example of some basic logic using the Sp.Agent APIs to manage evaluations / purchases / upgrades of licenses for our product
 // One should consider running this as an asynchronous or background activity, as the first call to a licensing routine in a cold application should ideally not unnecessarily impede the users flow
@@ -167,4 +159,12 @@ void CoordinateLicenseUpgrades()
     else
     	TriggerNavigateToLicensePurchaseOrActivationScreen();
 }
+```
+
+# Key Namespaces
+
+```c#
+using Sp.Agent; // Most Sp.Agent licensing APIs live in this namespace
+using Slps.ProtectionAttributes; // The [Protect] attribute lives in here
+using System.Linq; // Many of our APIs yield collections etc. that are intended to work well with LINQ
 ```
