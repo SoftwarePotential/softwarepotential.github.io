@@ -16,7 +16,7 @@ The code in this README is intended to provide a terse introduction to some key 
 
 # Protecting code
 
-```C#    
+```c#
 using Slps.ProtectionAttributes; // The [Protect] attribute lives in here
 
 [Protect] // Protect the code (but no License checks)
