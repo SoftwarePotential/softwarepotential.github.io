@@ -1,7 +1,7 @@
 ---
 layout: github.io
 category: pages
-title: Configuring your Software Potential NuGet Feed
+title: Getting Started - Code Protection with Software Potential 
 tagline: Using Software Potential to Protect Your Application
 ---
 
@@ -10,7 +10,8 @@ Welcome to the **Quick Start Guide to Code Protection**. The purpose of this doc
 It is NOT intended as a detailed guide to Code Protection or to cover Licensing aspects. Please refer to:
 - http://www.softwarepotential.com if you don't already have a valid account on the Software Potential Service 
 - http://docs.softwarepotential.com/Protection-README.html for more detailed code protection guidance e.g. how to disable protection for a build configuration, troubleshooting protection etc.
-- http://docs.softwarepotential.com/Licensing-README.html for information about Licensing
+- http://docs.softwarepotential.com/Getting-Started-With-Licensing.html if you wish to license your application
+- http://docs.softwarepotential.com/Licensing-README.html for more information about Licensing
 - https://github.com/SoftwarePotential/samples/ for example code
 - http://support.inishtech.com for the Technical Support forum and other support materials 
  
@@ -19,11 +20,8 @@ It is NOT intended as a detailed guide to Code Protection or to cover Licensing 
 A permutation defines a unique one way transformation that Code Protector will use to transform the CIL of your assemblies so that the protected assemblies cannot be reverse engineered. You will need to create Permutation that will be used to protect your product prior to being able to protect code:- 
 
 1. Log in to the Software Potential service at https://srv.softwarepotential.com
-
 2. Select **Accounts** -> **Manage Permutations** -> **Create Permutation**
-
 3. Enter a name for your permutation and click **OK**. (This name is purely a nickname used to identify it on menus should you have multiple permutations in your account. We recommend to use a name related to the product you'll be protecting.) 
-
 4. It may take a minute or so for your permutation to generate. On successful generation the status field will change from **Creation Pending** to **Done** (NB you'll need to click **Refresh** to update the status).
 
 Each permutation is uniquely identified by its **Short Code** which consists of the first five characters of the `Permutation Id` field.  For example a Permutation whose Id is `e9dc24g07-d195-4658-a312-82132945711d`" has a ShortCode of `e9dc2`
@@ -53,7 +51,7 @@ Once the package is installed, the Code Protector will be invoked on the project
 # Step 3: Select methods to be protected using Protection Attributes
 
 To identify methods to be protected you just mark each method with a `[Protect]` attribute.  For example:
-```C#
+```c#
 Using System;
 using Slps.ProtectionAttributes;
 
