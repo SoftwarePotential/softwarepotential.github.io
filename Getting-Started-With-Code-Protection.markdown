@@ -8,6 +8,7 @@ tagline: Using Software Potential to Protect Your Application
 Welcome to the **Quick Start Guide to Code Protection**. The purpose of this document is to get you, a first time user, up and running quickly when using the Software Potential service to protect your .NET assembly.
 
 It is NOT intended as a detailed guide to Code Protection or to cover Licensing aspects. Please refer to:
+
 - [http://www.softwarepotential.com](http://www.softwarepotential.com) if you don't already have a valid account on the Software Potential Service 
 - [http://docs.softwarepotential.com/Protection-README.html](http://docs.softwarepotential.com/Protection-README.html) for more detailed code protection guidance e.g. how to disable protection for a build configuration, troubleshooting protection etc.
 - [http://docs.softwarepotential.com/Getting-Started-With-Licensing.html](http://docs.softwarepotential.com/Getting-Started-With-Licensing.html) if you wish to license your application
@@ -51,6 +52,7 @@ Once the package is installed, the Code Protector will be invoked on the project
 # Step 3: Select methods to be protected using Protection Attributes
 
 To identify methods to be protected you just mark each method with a `[Protect]` attribute.  For example:
+
 ```c#
 Using System;
 using Slps.ProtectionAttributes;
