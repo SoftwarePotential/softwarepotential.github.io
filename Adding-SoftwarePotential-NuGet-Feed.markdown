@@ -43,6 +43,7 @@ The NuGet feed can serve multiple versions of a given NuGet Permutation package 
 Each Software Potential NuGet package will be identified by a combination of a * **Package Id** and a * **Package Version**. The composition of the Package Id and Package Version depends on the nature of the NuGet package i.e. on whether it is related to a Permutation or Product definition.  
 
 For example, 
+
 - the `SoftwarePotential.Protection-<e30c25>, Version 3.2.1945.4` package contains the protection components that correspond to **version 3.2.1945** of the Permutation with Short Code **e30c25**. (This version resulted from the 4th update to the permutation.)
 - the `SoftarePotential.Licensing-MedicalImage_2013, Version 1.0.0.0` package contains **Version 1.0** of the product specification of the **2013 Version** of the **Medical Image** product. (This version indicates this is the initial revision of the product specification.)
 
