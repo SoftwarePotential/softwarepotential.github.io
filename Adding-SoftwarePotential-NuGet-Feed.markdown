@@ -9,25 +9,23 @@ tagline: Setting-up your Software Potential NuGet feed
 Whenever you create or update a Permutation or Product definition in your Software Potential service account a set of NuGet packages is generated in the Software Potential NuGet feed. You can use the NuGet Package Manager in Visual Studio to install the packages required to protect and/or license your .NET application.
 
 See the following Getting Started guides for more details on how to protect and license your application using Software Potential:
-http://docs.softwarepotential.com/Getting-Started-With-Code-Protection.html
-http://docs.softwarepotential.com/Getting-Started-With-Licensing.html
+[http://docs.softwarepotential.com/Getting-Started-With-Code-Protection.html](http://docs.softwarepotential.com/Getting-Started-With-Code-Protection.html)
+[http://docs.softwarepotential.com/Getting-Started-With-Licensing.html](http://docs.softwarepotential.com/Getting-Started-With-Licensing.html)
 
 The purpose of this document is to guide you through the steps in setting up your Software Potential NuGet package source so that you can access the required packages to protect and license your .NET application. *[It is not intended as a walkthrough on the use of NuGet Package Manager; the following articles provide more details on its use.
-http://docs.nuget.org/docs/start-here/managing-nuget-packages-using-the-dialog]*
+[http://docs.nuget.org/docs/start-here/managing-nuget-packages-using-the-dialog](http://docs.nuget.org/docs/start-here/managing-nuget-packages-using-the-dialog)]*
 
 # Installing NuGet Package Manager in Visual Studio
 NuGet Package Manager ships with Visual Studio 2012 forward.  For installation on other versions of Visual Studio please see
-http://docs.nuget.org/docs/start-here/installing-nuget
+[http://docs.nuget.org/docs/start-here/installing-nuget](http://docs.nuget.org/docs/start-here/installing-nuget)
 
 # Adding Software Potential NuGet Source
-You can download your Software Potential packages from the following NuGet feed: https://srv.softwarepotential.com/NuGet/nuget **(Please note this URL is case sensitive!)**. 
+You can download your Software Potential packages from the following NuGet feed: `https://srv.softwarepotential.com/NuGet/nuget` **(Please note this URL is case sensitive!)**. 
 
 To add this feed to the NuGet Package Manger in Visual Studio:
 
  1. Launch NuGet Package Manager (by right clicking the Solution in Solution Explorer in Visual Studio and selecting the **Manage NuGet Packages** menu option)
-
  2. In the Package Manager UI, select **Setting** -> **Package Manager** -> **Package Sources** and click the **+** button to add a new feed
-
  3. Set the URL to https://srv.softwarepotential.com/NuGet/nuget, name the feed as **Software Potential**, and then click **OK**
 
 The new Software Potential feed should now be listed as one of the **Online** feeds displayed on the main Package Manager screen.

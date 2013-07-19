@@ -8,18 +8,18 @@ tagline: Using Software Potential to License Your Application
 Welcome to the **Quick Start Guide to Licensing**. The purpose of this document is to get you, a first time user, up and running quickly when using the Software Potential service to license your .NET assembly. 
 
 It is NOT intended as a detailed guide to application licensing or to cover Code Protection aspects. Please refer to:
-- http://www.softwarepotential.com if you don't already have a valid account on the Software Potential Service
-- http://docs.softwarepotential.com/Getting-Started-With-Code-Protection.html if you wish to only protect your application
-- http://docs.softwarepotential.com/Protection-README.html for more detailed code protection guidance e.g. how to disable protection for a build configuration, troubleshooting protection etc.
-- http://docs.softwarepotential.com/Licensing-README.html for more detailed information about Licensing
-- https://github.com/SoftwarePotential/samples/ for example code
-- http://support.inishtech.com for the Technical Support forum and other support materials  
+- [http://www.softwarepotential.com](http://www.softwarepotential.com) if you don't already have a valid account on the Software Potential Service
+- [http://docs.softwarepotential.com/Getting-Started-With-Code-Protection.html](http://docs.softwarepotential.com/Getting-Started-With-Code-Protection.html) if you wish to only protect your application
+- [http://docs.softwarepotential.com/Protection-README.html](http://docs.softwarepotential.com/Protection-README.html) for more detailed code protection guidance e.g. how to disable protection for a build configuration, troubleshooting protection etc.
+- [http://docs.softwarepotential.com/Licensing-README.html](http://docs.softwarepotential.com/Licensing-README.html) for more detailed information about Licensing
+- [https://github.com/SoftwarePotential/samples/](https://github.com/SoftwarePotential/samples/) for example code
+- [http://support.inishtech.com](http://support.inishtech.com) for the Technical Support forum and other support materials  
 
 # Step 1: Create Your Permutation
 
 A permutation defines a unique one way transformation that Code Protector will use to transform the CIL of your assemblies so that the protected assemblies cannot be reverse engineered. You will need to create  a Permutation that will be used to protect your product prior to being able to protect code:- 
 
-1. Log in to the Software Potential service at https://srv.softwarepotential.com
+1. Log in to the Software Potential service at [https://srv.softwarepotential.com](https://srv.softwarepotential.com)
 
 2. Select **Accounts** -> **Manage Permutations** -> **Create Permutation**
 
@@ -33,7 +33,7 @@ Each permutation is uniquely identified by its **Short Code** which consists of 
 
 To license your application you will need to associate it with a Product defined by you in the Software Potential service. To do this:
 
-1. Log in to the Software Potential service at https://srv.softwarepotential.com
+1. Log in to the Software Potential service at [https://srv.softwarepotential.com](https://srv.softwarepotential.com)
 2. Select **Products** -> **Add Product**
 3. Add a **Name**, **Version** and a **Description** (optional) for the product, and click **OK** to save. You should now see the new product listed in the **Products** page.
 
@@ -49,7 +49,7 @@ If you wish to employ feature-based licensing (and your subscription permits thi
 Once features have been defined you are now in a position to license individual pieces of functionality within your application, such that only those users with a valid license containing the required feature can access the corresponding functionality. 
 
 # Step 3: Install the NuGet Packages for Licensing
-Once you have generated a Permutation and defined a Product in the Software Potential service, the Software Potential components required to license and protect your .NET application are delivered as a set of NuGet packages via the Software Potential NuGet feed at https://srv.softwarepotential.com/NuGet/nuget.
+Once you have generated a Permutation and defined a Product in the Software Potential service, the Software Potential components required to license and protect your .NET application are delivered as a set of NuGet packages via the Software Potential NuGet feed at [https://srv.softwarepotential.com/NuGet/nuget](https://srv.softwarepotential.com/NuGet/nuget).
 
 ## Software Potential NuGet Packages for Declarative Licensing
 To each project in your Visual Studio solution where you wish to both license AND protect code you will need to add the following packages:
@@ -83,7 +83,7 @@ Once the above packages are installed, the Code Protector tooling will be invoke
 
 # Step 4: Mark Methods to be Protected or Licensed 
 
-To identify the methods to be licensed in a source file you just need to mark each method with the appropriate `ProtectionAttribute` as per the guidance in http://http://docs.softwarepotential.com/Licensing-README.html. 
+To identify the methods to be licensed in a source file you just need to mark each method with the appropriate `ProtectionAttribute` as per the guidance in [http://http://docs.softwarepotential.com/Licensing-README.html](http://http://docs.softwarepotential.com/Licensing-README.html). 
  
 For example, the methods in the following code have been marked for protection or licensing against version **2013** of the product **MyProduct**
 ```c#
@@ -123,7 +123,7 @@ Please refer to [SoftwarePotential.Licensing-README](http://http://docs.software
 
 # Step 5: Add facilities for Activation and License Management to your Application
 To complete the licensing of your application you will need to enable your customers to activate licenses and manage significant licensing events e.g. when there is no license to run the application.
-For more implementation details see the sample applications at https://github.com/SoftwarePotential/samples/
+For more implementation details see the sample applications at [https://github.com/SoftwarePotential/samples/](https://github.com/SoftwarePotential/samples/)
  
 ## Handling NotLicensedException
 When an attempt is made to execute code for which an appropriate license is not available, the runtime will throw a `NotLicensedException`. Typically you will handle this in your application by 
@@ -168,7 +168,7 @@ public class ActivationModel : IDataErrorInfo, INotifyPropertyChanged
 ```
 
 ## Displaying License Details, Managing trials and upgrades
-Please refer to https://github.com/SoftwarePotential/samples/ and http://docs.softwarepotential.com/Licensing-README.html for examples of using the APIs to surface information as to the installed licenses etc.
+Please refer to [https://github.com/SoftwarePotential/samples/](https://github.com/SoftwarePotential/samples/) and [http://docs.softwarepotential.com/Licensing-README.html](http://docs.softwarepotential.com/Licensing-README.html) for examples of using the APIs to surface information as to the installed licenses etc.
 
 # Step 6: Build Your Application
 Build your application as normal (in debug or release mode). Your output assemblies in your normal build output directory (i.e. `bin\debug` or `bin\release`) should now have the relevant methods as identified in Step 4 be protected and/or subject to license verification. Relevant accompanying runtime libraries added by the NuGet packages will also be in the output directory and should also be deployed alongside the application.

@@ -8,18 +8,18 @@ tagline: Using Software Potential to Protect Your Application
 Welcome to the **Quick Start Guide to Code Protection**. The purpose of this document is to get you, a first time user, up and running quickly when using the Software Potential service to protect your .NET assembly.
 
 It is NOT intended as a detailed guide to Code Protection or to cover Licensing aspects. Please refer to:
-- http://www.softwarepotential.com if you don't already have a valid account on the Software Potential Service 
-- http://docs.softwarepotential.com/Protection-README.html for more detailed code protection guidance e.g. how to disable protection for a build configuration, troubleshooting protection etc.
-- http://docs.softwarepotential.com/Getting-Started-With-Licensing.html if you wish to license your application
-- http://docs.softwarepotential.com/Licensing-README.html for more information about Licensing
-- https://github.com/SoftwarePotential/samples/ for example code
-- http://support.inishtech.com for the Technical Support forum and other support materials 
+- [http://www.softwarepotential.com](http://www.softwarepotential.com) if you don't already have a valid account on the Software Potential Service 
+- [http://docs.softwarepotential.com/Protection-README.html](http://docs.softwarepotential.com/Protection-README.html) for more detailed code protection guidance e.g. how to disable protection for a build configuration, troubleshooting protection etc.
+- [http://docs.softwarepotential.com/Getting-Started-With-Licensing.html](http://docs.softwarepotential.com/Getting-Started-With-Licensing.html) if you wish to license your application
+- [http://docs.softwarepotential.com/Licensing-README.html](http://docs.softwarepotential.com/Licensing-README.html) for more information about Licensing
+- [https://github.com/SoftwarePotential/samples/](https://github.com/SoftwarePotential/samples/) for example code
+- [http://support.inishtech.com](http://support.inishtech.com) for the Technical Support forum and other support materials 
  
 # Step 1: Create Your Permutation
 
 A permutation defines a unique one way transformation that Code Protector will use to transform the CIL of your assemblies so that the protected assemblies cannot be reverse engineered. You will need to create Permutation that will be used to protect your product prior to being able to protect code:- 
 
-1. Log in to the Software Potential service at https://srv.softwarepotential.com
+1. Log in to the Software Potential service at [https://srv.softwarepotential.com](https://srv.softwarepotential.com)
 2. Select **Accounts** -> **Manage Permutations** -> **Create Permutation**
 3. Enter a name for your permutation and click **OK**. (This name is purely a nickname used to identify it on menus should you have multiple permutations in your account. We recommend to use a name related to the product you'll be protecting.) 
 4. It may take a minute or so for your permutation to generate. On successful generation the status field will change from **Creation Pending** to **Done** (NB you'll need to click **Refresh** to update the status).
@@ -28,7 +28,7 @@ Each permutation is uniquely identified by its **Short Code** which consists of 
 
 # Step 2: Install Code Protection NuGet Packages 
 
-The Software Potential components required to protect your .NET application are delivered as a set of NuGet packages via the Software Potential NuGet feed at https://srv.softwarepotential.com/NuGet/nuget.
+The Software Potential components required to protect your .NET application are delivered as a set of NuGet packages via the Software Potential NuGet feed at [https://srv.softwarepotential.com/NuGet/nuget](https://srv.softwarepotential.com/NuGet/nuget).
 
 Each time a new Permutation is generated (or an existing Permutation is updated) a set of corresponding NuGet packages is uploaded to the Software Potential NuGet feed. 
 
