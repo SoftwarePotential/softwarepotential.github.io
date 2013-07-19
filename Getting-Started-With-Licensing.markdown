@@ -8,6 +8,7 @@ tagline: Using Software Potential to License Your Application
 Welcome to the **Quick Start Guide to Licensing**. The purpose of this document is to get you, a first time user, up and running quickly when using the Software Potential service to license your .NET assembly. 
 
 It is NOT intended as a detailed guide to application licensing or to cover Code Protection aspects. Please refer to:
+
 - [http://www.softwarepotential.com](http://www.softwarepotential.com) if you don't already have a valid account on the Software Potential Service
 - [http://docs.softwarepotential.com/Getting-Started-With-Code-Protection.html](http://docs.softwarepotential.com/Getting-Started-With-Code-Protection.html) if you wish to only protect your application
 - [http://docs.softwarepotential.com/Protection-README.html](http://docs.softwarepotential.com/Protection-README.html) for more detailed code protection guidance e.g. how to disable protection for a build configuration, troubleshooting protection etc.
@@ -19,13 +20,10 @@ It is NOT intended as a detailed guide to application licensing or to cover Code
 
 A permutation defines a unique one way transformation that Code Protector will use to transform the CIL of your assemblies so that the protected assemblies cannot be reverse engineered. You will need to create  a Permutation that will be used to protect your product prior to being able to protect code:- 
 
-1. Log in to the Software Potential service at [https://srv.softwarepotential.com](https://srv.softwarepotential.com)
-
-2. Select **Accounts** -> **Manage Permutations** -> **Create Permutation**
-
-3. Enter a name for your permutation and click **OK**. (This name is purely a nickname used to identify it on menus should you have multiple permutations in your account. We recommend to use a name related to the product you'll be protecting.) 
-
-4. It may take a minute or so for your permutation to generate. On successful generation the status field will change from **Creation Pending** to **Done** (NB you'll need to click **Refresh** to update the status).
+ 1. Log in to the Software Potential service at [https://srv.softwarepotential.com](https://srv.softwarepotential.com)
+ 2. Select **Accounts** -> **Manage Permutations** -> **Create Permutation**
+ 3. Enter a name for your permutation and click **OK**. (This name is purely a nickname used to identify it on menus should you have multiple permutations in your account. We recommend to use a name related to the product you'll be protecting.) 
+ 4. It may take a minute or so for your permutation to generate. On successful generation the status field will change from **Creation Pending** to **Done** (NB you'll need to click **Refresh** to update the status).
 
 Each permutation is uniquely identified by its **Short Code** which consists of the first five characters of the `Permutation Id` field.  For example a Permutation whose Id is `e9dc24g07-d195-4658-a312-82132945711d`" has a ShortCode of `e9dc2`
 
@@ -33,18 +31,18 @@ Each permutation is uniquely identified by its **Short Code** which consists of 
 
 To license your application you will need to associate it with a Product defined by you in the Software Potential service. To do this:
 
-1. Log in to the Software Potential service at [https://srv.softwarepotential.com](https://srv.softwarepotential.com)
-2. Select **Products** -> **Add Product**
-3. Add a **Name**, **Version** and a **Description** (optional) for the product, and click **OK** to save. You should now see the new product listed in the **Products** page.
+ 1. Log in to the Software Potential service at [https://srv.softwarepotential.com](https://srv.softwarepotential.com)
+ 2. Select **Products** -> **Add Product**
+ 3. Add a **Name**, **Version** and a **Description** (optional) for the product, and click **OK** to save. You should now see the new product listed in the **Products** page.
 
 Once your Product is defined you are now ready to license your application such that only those users with a valid license can run it.
 
 ## Define Product Features (optional)
 If you wish to employ feature-based licensing (and your subscription permits this) you may wish to add Features to your new product as follows:
 
-1. Select your new Product in the list of available products and click **Edit**
-2. Enter a **Name** and (optionally) a **Description** for the feature, and the click the **+** icon to add the feature to the product.
-3. Repeat this for each feature you wish to add to the product.
+ 1. Select your new Product in the list of available products and click **Edit**
+ 2. Enter a **Name** and (optionally) a **Description** for the feature, and the click the **+** icon to add the feature to the product.
+ 3. Repeat this for each feature you wish to add to the product.
 
 Once features have been defined you are now in a position to license individual pieces of functionality within your application, such that only those users with a valid license containing the required feature can access the corresponding functionality. 
 
@@ -59,9 +57,11 @@ To each project in your Visual Studio solution where you wish to both license AN
 
 
 In the root (or StartUp) project of your solution you will also need to add a **SoftwarePotential.Configuration.Local.&lt;SingleUser/MultiUser&gt;-&lt;PermutationShortCode&gt;** package to configure a local license store appropriate to your application type i.e. either 
+
 * **SoftwarePotential.Configuration.Local.SingleUser-&lt;PermutationShortCode&gt;** - if your application does not need to be accessible to multiple user profiles on a given machine and/or you do not have an elevated installation process (For more details see [Configuration.Local.SingleUser-README.html](http://docs.softwarepotential.com/Configuration.Local.SingleUser-README.html)), 
 
 OR
+
 * **SoftwarePotential.Configuration.Local.MultiUser-&lt;PermutationShortCode&gt;** - if your application needs to be accessible to multiple user profiles on a given machine and have an installation process that can run elevated (For more details see [Configuration.Local.MultiUser-README.html](http://docs.softwarepotential.com/Configuration.Local.MultiUser-README.html))
 
 ## Software Potential NuGet Packages for Programmatic Licensing
@@ -74,6 +74,7 @@ If you have not already done so you will need to add the Software Potential NuGe
 ## Installing the Packages
 
 To install the packages required to protect and license code in a Visual Studio project:
+
  1. Right click the Visual Studio project in **Solution Explorer** and select the **Manage NuGet Packages** option.
  2. In Package Manager select the **Software Potential** source from the list of **Online sources** (to view only the Software Potential packages). (See *Registering the Software Potential NuGet endpoint in Visual Studio* above if you do not have such an endpoint registered yet)
  3. Select the package **SoftwarePotential.Licensing-&lt;Product&gt;_&lt;Version&gt;** and click  the **Install** button to install in your project.
@@ -86,6 +87,7 @@ Once the above packages are installed, the Code Protector tooling will be invoke
 To identify the methods to be licensed in a source file you just need to mark each method with the appropriate `ProtectionAttribute` as per the guidance in [http://http://docs.softwarepotential.com/Licensing-README.html](http://http://docs.softwarepotential.com/Licensing-README.html). 
  
 For example, the methods in the following code have been marked for protection or licensing against version **2013** of the product **MyProduct**
+
 ```c#
 Using System;
 using Slps.ProtectionAttributes;
@@ -127,6 +129,7 @@ For more implementation details see the sample applications at [https://github.c
  
 ## Handling NotLicensedException
 When an attempt is made to execute code for which an appropriate license is not available, the runtime will throw a `NotLicensedException`. Typically you will handle this in your application by 
+
 * Displaying an error message to inform the user that there is no license available to execute the required functionality
 * Offering the user the opportunity to purchase/upgrade/activate a license to enable the licensed feature
 The exact way in which this is best handled will depend on the particulars of your application and its operating environment. The samples illustrate typical approaches to this.
