@@ -7,20 +7,62 @@ tagline: Software Potential Licensing NuGet package README
 
 Welcome to the **SoftwarePotential.Licensing-&lt;MyProduct&gt;_&lt;MyVersion&gt;** NuGet Package for your Product
 
-**NOTE:** The code protection aspects of the Software Potential solution are covered in the [Protection-README](Protection-README.html) within the SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet Package for your Permutation.
+**NOTE:** The code protection aspects of the Software Potential solution are covered in the [Protection-README](http://docs.softwarepotential.com/Protection-README.html) within the SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet Package for your Permutation.
 
 The code in this README is intended to provide a terse introduction to some key concepts employed in the Licensing APIs we expose. It is NOT intended as a full product walkthrough or as a sample of a real application. Please refer to:
 
-- https://github.com/SoftwarePotential/samples for example code
-- http://support.inishtech.com/ for the Technical Support forum and other support materials
+- [https://github.com/SoftwarePotential/samples](https://github.com/SoftwarePotential/samples) for example code
+- [http://support.inishtech.com/](http://support.inishtech.com/) for the Technical Support forum and other support materials
 
 # IMPORTANT: Implicit Package Dependencies REQUIRED TO MAKE THE CODE COMPILE
 This package is intended to be used in conjunction with other packages, which ***must be installed for the code to compile correctly***.
 
-1. (always) a Permutation-relative package:-
+1. (always) a package that will add runtime components (from your Permutation):-
  * For your application's **main project/Composition Root responsible for managing the licensing configuration** add an appropriate *Configuration package*, i.e. one of the [**SoftwarePotential.Configuration.&lt;ApplicationStyle&gt;-&lt;PermutationShortCode&gt;** NuGet packages](http://docs.softwarepotential.com/index.html) 
  * for **other projects** (e.g. if you have more than one project that uses Licensing) add the **SoftwarePotential-&lt;PermutationShortCode&gt;** package to each other project that needs access to product-relative functionality)
-1. (typically) a *Protection package*, i.e. add a [**SoftwarePotential.Protection-&lt;PermutationShortCode&gt;** NuGet package](http://docs.softwarepotential.com/Protection-README.html) to any projects in which you wish to apply protection
+2. (typically) a *Protection package*, i.e. add a [**SoftwarePotential.Protection-&lt;PermutationShortCode&gt;** NuGet package](http://docs.softwarepotential.com/Protection-README.html) to any projects in which you wish to apply protection
+
+# IMPORTANT: Key Code Changes in Your Application To Support Licensing 
+
+The Software Potential runtime components make no assumptions about your Application i.e., where licenses are stored is completely defined by code within your application.
+
+If you are just Protecting your code, the system doesn't require any further information and can work without any code changes. This is *not* the case for Licensed applications.
+
+## Selecting a Store Configuration
+
+Regardless of what kind of application you have, you'll need to identify your desired configuration to the Software Potential runtime components. There are a number of SoftwarePotential.Configuration NuGet packages available, or you can opt to call the APIs directly. 
+
+## Stores requiring an Installation Step
+
+Depending on your application type and the licensing models to be supported, your application's installation process may need to provision and initialize a license store. Please refer to [Configuration.Local.MultiUser-README.html](http://docs.softwarepotential.com/Configuration.Local.MultiUser-README.html) for further information about this requirement and the steps involved in applying it to your application. 
+
+## Startup Code: MANDATORY Verification step for all Licensed Applications
+
+In order for the licensing system to know how you wish to manage your licenses, you need to add a call to the Licensing routines that identifies your desired license storage configuration as part of your application's startup. 
+
+This needs to run **before any Protected or Licensed code in your system** (failure to do so makes the system switch into Protected Code only mode). To do this call `SpAgent.Configuration.VerifyStoresInitialized();` in your `Main` or other environment-specific startup hook.
+
+```c#
+class Program
+{
+	static int Main( string[] args )
+	{
+		try
+		{
+			SpAgent.Configuration.VerifyStoresInitialized();
+
+			// TODO start your application
+
+			return 0;
+		}
+		catch ( Exception ex )
+		{
+			Console.Error.WriteLine( "Exception: " + ex );
+			return 1;
+		}
+	}
+}
+```
 
 # Attributes For Protecting Code Without Requiring A License 
 (Provided by accompanying **SoftwarePotential.Protection-&lt;PermutationShortCode&gt;** NuGet package. See the [Protection README](http://docs.softwarepotential.com/Protection-README.html) for more information.)

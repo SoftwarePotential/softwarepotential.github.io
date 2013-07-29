@@ -82,7 +82,45 @@ To install the packages required to protect and license code in a Visual Studio 
 
 Once the above packages are installed, the Code Protector tooling will be invoked on the output assembly as part of each project build by default, with the result that methods you identify can be automatically licensed (or just protected) each time it is built. Please see [SoftwarePotential.Licensing-README](http://http://docs.softwarepotential.com/Licensing-README.html) for more detailed licensing guidance e.g. how to disable declarative licensing/protection on a build configuration, how to access license data programmatically etc.
 
-# Step 4: Mark Methods to be Protected or Licensed 
+# Step 4: Configure Licensing Of Your Application
+
+The Software Potential runtime components make no assumptions about your Application i.e., where licenses are stored is completely defined by code within your application. Regardless of what kind of application you have, you'll need to identify your desired configuration to the Software Potential runtime components. 
+
+When you installed the SoftwarePotential.Configuration NuGet package in Step 3 you selected the store configuration appropriate to your application type. (Please refer to relevant [Configuration README](http://docs.softwarepotential.com/index.html) for further information on how to customize the store configuration in your application code if required.)
+
+## Stores requiring an Installation Step
+
+Depending on your application type and the licensing models to be supported, your application's installation process may need to provision and initialize a license store. Please refer to [Configuration.Local.MultiUser-README.html](http://docs.softwarepotential.com/Configuration.Local.MultiUser-README.html) for further information about this requirement and the steps involved in applying it to your application. 
+
+## Startup Code: MANDATORY Verification step for all Licensed Applications
+
+In order for the licensing system to know how you wish to manage your licenses, you need to add a call to the Licensing routines that identifies your desired license storage configuration as part of your application's startup. 
+
+This needs to run **before any Protected or Licensed code in your system** (failure to do so makes the system switch into Protected Code only mode). To do this call `SpAgent.Configuration.VerifyStoresInitialized();` in your `Main` or other environment-specific startup hook.
+
+```c#
+class Program
+{
+	static int Main( string[] args )
+	{
+		try
+		{
+			SpAgent.Configuration.VerifyStoresInitialized();
+
+			// TODO start your application
+
+			return 0;
+		}
+		catch ( Exception ex )
+		{
+			Console.Error.WriteLine( "Exception: " + ex );
+			return 1;
+		}
+	}
+}
+```
+
+# Step 5: Mark Methods to be Protected or Licensed 
 
 To identify the methods to be licensed in a source file you just need to mark each method with the appropriate `ProtectionAttribute` as per the guidance in [http://http://docs.softwarepotential.com/Licensing-README.html](http://http://docs.softwarepotential.com/Licensing-README.html). 
  
@@ -114,7 +152,7 @@ public static class ProtectedCode
 	}
 	
 	// PROTECTED AND REQUIRES A VALID LICENSE WITH "FEATURE A"
-	[MyProduct_2013.License.FeatureA]
+	[MyProduct_2013.Features.FeatureA]
 	public static string ProtectedAction3()
 	{
 		return "Executed ProtectedAction3";
@@ -123,7 +161,7 @@ public static class ProtectedCode
 ```
 Please refer to [SoftwarePotential.Licensing-README](http://http://docs.softwarepotential.com/Licensing-README.html) on how to implement licensing programmatically i.e using the Software Potential runtime licensing API's directly. 
 
-# Step 5: Add facilities for Activation and License Management to your Application
+# Step 6: Add facilities for Activation and License Management to your Application
 To complete the licensing of your application you will need to enable your customers to activate licenses and manage significant licensing events e.g. when there is no license to run the application.
 For more implementation details see the sample applications at [https://github.com/SoftwarePotential/samples/](https://github.com/SoftwarePotential/samples/)
  
@@ -173,5 +211,5 @@ public class ActivationModel : IDataErrorInfo, INotifyPropertyChanged
 ## Displaying License Details, Managing trials and upgrades
 Please refer to [https://github.com/SoftwarePotential/samples/](https://github.com/SoftwarePotential/samples/) and [http://docs.softwarepotential.com/Licensing-README.html](http://docs.softwarepotential.com/Licensing-README.html) for examples of using the APIs to surface information as to the installed licenses etc.
 
-# Step 6: Build Your Application
+# Step 7: Build Your Application
 Build your application as normal (in debug or release mode). Your output assemblies in your normal build output directory (i.e. `bin\debug` or `bin\release`) should now have the relevant methods as identified in Step 4 be protected and/or subject to license verification. Relevant accompanying runtime libraries added by the NuGet packages will also be in the output directory and should also be deployed alongside the application.

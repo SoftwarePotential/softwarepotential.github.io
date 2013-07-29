@@ -9,23 +9,30 @@ Welcome to the SoftwarePotential.Configuration.Local.SingleUser-&lt;PermutationS
 
 IMPORTANT: this package is intended to be used in concert with:
 
-* SoftwarePotential.Licensing-&lt;MyProduct&gt;-&lt;MyVersion&gt; NuGet package (must be installed for the code to compile correctly)
-* SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet package
+* SoftwarePotential.Licensing-&lt;MyProduct&gt;-&lt;MyVersion&gt; NuGet package (must be installed for the code to compile correctly). See [the associated Licensing README](http://docs.softwarepotential.com/Licensing-README.html) for more information.
+* SoftwarePotential.Protection-&lt;PermutationShortCode&gt; NuGet package. See [the associated Protection README](http://docs.softwarepotential.com/Protection-README.html) for more information.
 
-The code in this README is intended to provide a terse introduction to some key techniques related to configuring Software Potential-licensed applications, which can be used by a single Windows user on each target machine.  
+# Key Constraints and Advantages of this SINGLE USER Configuration Package
 
-It is NOT intended as a full product walkthrough or as a sample of a real application. Please refer to:
+This package is intended to offer a licensing configuration for applications that manage licenses completely within the current user's Profile. This means your application and it's licenses **can only be used by a single Windows user on each target machine**. The key advantage of this is that this does not force one to write and distribute a separate installer, i.e. an MSI package or similar. (See [the MultiUser equivalent](http://docs.softwarepotential.com/Configuration.Local.MultiUser-README.html) if this is inappropriate for your application).
 
-- <https://github.com/SoftwarePotential/samples/> for example code
-- <http://support.inishtech.com/> for the forum and other support materials
+# License Storage Location Base Path
 
-License store overview
-----------------------------------
-In this scenario, the licenses are typically stored in an application data folder belonging to the Windows user, e.g. ``C:\Users\MyUser\AppData\Local\MyCompany\MyProduct\MyVersion``
+Adding this NuGet package to your application configures licenses to be stored in the Application Data folder within the Windows user's Profile directory. i.e. out of the box, the directory used by the code in this package results in a base path such as ``C:\Users\MyUser\AppData\Local\``
 
-CONFIGURATION
-==============
+# Customizing the license store path
 
-Customizing license store path
--------------------------------
-To change the license store path, you need to modify `SpAgent.ConfigureLocalStorePath()` method (in `SpAgent.Configuration.Local.Customizations.cs`).
+Out of the box, the path used is derived from your Company and Product names as supplied to the Software Potential service. This is only intended as a placeholder and you are free to customize the exact names used.
+
+Within the Base Path, this package generates a subdirectory structure for your applications licenses as follows: ``MyCompany\MyProduct\MyVersion`` (Having a subdirectory structure like this is necessary as this area of the users profile directory is shared among all applications on the machine.)
+
+To change either the base path, or the subdirectory used for your application's license storage area, please refer to the `SpAgent.ConfigureLocalStorePath()` method (in `SpAgent.Configuration.Local.Customizations.cs`).
+
+# Troubleshooting
+
+The key requirement of this configuration is that your application be running with sufficient privilege to 
+- access the base directory (e.g. ``C:\Users\USERNAME\AppData\Local\``
+- create folders within the base directory (e.g. ``MyCompany\MyProduct\MyVersion``
+- write files within the above area
+
+Any failures will result in an Exception derived from ``StorageInaccessibleException``.
