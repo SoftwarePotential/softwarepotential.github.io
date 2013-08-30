@@ -43,6 +43,7 @@ If you have not already done so you will need to add the Software Potential NuGe
 ## Installing the Packages
 
 To install the packages required to protect code in a Visual Studio project:
+
  1. Right click the Visual Studio project in **Solution Explorer** and select the **Manage NuGet Packages** option.
  2. In Package Manager select the **Software Potential** source from the list of **Online sources** (to view only the Software Potential packages). (See *Registering the Software Potential NuGet endpoint in Visual Studio* above if you do not have such an endpoint registered yet)
  3. Select the **SoftwarePotential-Protection-&lt;PermutationShortCode&gt;** package (where *PermutationShortCode* is that of the permutation you generated in Step 1 above) and click  the **Install** button to install in your project.  
