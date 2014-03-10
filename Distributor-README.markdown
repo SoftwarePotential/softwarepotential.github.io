@@ -33,7 +33,8 @@ The Distributor components are designed to fit into an appropriate installation/
 
 Typically the Distributor server components are packaged separately from your application, requiring separate installers for your protected application and your Distributor server components.  
 
-Whatever installation approach you take you need to ensure in your installation process that you:  
+Whatever installation approach you take you need to ensure in your installation process that you:
+  
 - copy the `Slps.Distributor.Host` folder to an installation directory on the machine intended to host the Distributor Server.
 - call (elevated) the ``Install.cmd`` batch file in the ``Slps.Distributor.Hosts`` folder with the **-Install** option e.g. from the command line ```C:\<InstallationDirectory>\Slps.Distributor.Hosts\install.cmd -install```.
 
@@ -46,6 +47,7 @@ By default the Distributor service listens on Port 8731 for feature allocation r
 
 ### Distributor Base Uri
 To connect to a Distributor instance, the application must be configured with a Distributor Base Uri, which takes the form: `http://<DistributorServerName>:<PortNo>` where:
+
 * `<DistributorServerName>` is the FQDN of the server on which the Distributor service is installed (you can alternatively use the IP address of the server).
 * `<PortNo>` is the port on which the Distributor instance is listening for client connections; by default this is 8731.
 

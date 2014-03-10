@@ -30,6 +30,7 @@ To connect to a Distributor instance, the application must be configured with a 
 # Base Uri management within your application
 
 To enable your licensed application to use Distributed resources, you will need a mechanism to maintain the Distributor Base Uri within your system. The main options are:
+
 * Pass the Distributor Base Uri as a command line argument during the application installation process.
 * Add an option to configure the Distributor Base Uri to an existing Settings or Configuration dialog in your application. 
 
@@ -38,6 +39,7 @@ If you pass Distributor Base Uri as a command line argument you can call `SpAgen
 # Base URI Storage approaches
 
 If you wish the application end-user to be able to set (and if necessary update) the Base URI setting then it will need to be stored within an area that the Application is able to write to regardless of which user is active.  Your options are:
+
 * Leverage the pre-existing License Storage Location as already configured (which already has the correct read/write permissions set).
 * Leverage a pre-existing application settings storage location that is created under application control.  
 		
@@ -106,10 +108,12 @@ then one would make the following modification to the `ConfigureStaticDistributo
 # No Local Storage Configured
 
 In the unlikely event that you don't have any local license storage configured (e.g. you are not using a SoftwarePotential.Configuration.(Multi|Single)User Package) then you will need to maintain Distributor Base Uri using code within your application as per one of the following approaches covered earlier in this document:
+
 * Leveraging a pre-existing settings storage mechanism within your application
 * Leveraging a pre-existing app.config file
  
 In addition, the lack of such local storage precludes:
+
 * Checking out Distributor licenses so that applications can work when Disconnected from Distributor
 * Use of any local licenses in parallel with Distributor licenses
   
@@ -131,6 +135,7 @@ If you do not have local storage configured but still wish your application to a
 Whichever approach you take to the storage of the Distributor Base Uri, you may wish to prompt the end user to enter the Distributor endpoint Uri if no value has been set e.g. by triggering an Options Dialog.
  
 You can do this simply by passing a lambda to `configure()` that returns either:
+
 - a Valid Uri if a Distributor is to be used 
 - null if the user has opted not connect to a Distributor
 
