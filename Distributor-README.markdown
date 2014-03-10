@@ -7,6 +7,7 @@ tagline: README for Sp.Distributor NuGet package from Software Potential
 
 Welcome to the Sp.Distributor-&lt;PermutationShortCode&gt; NuGet Package.
 
+**NB: The Sp.Distributor NuGet package is available from v3.2.1950 so you will need to update your permutation if it is earlier than this.** 
 
 # Purpose of this Distributor Package
 

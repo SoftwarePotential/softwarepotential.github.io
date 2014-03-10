@@ -4,9 +4,7 @@ category: pages
 title: Getting Started with Distributor
 tagline: Using Distributor to manage Concurrent/Floating Licensing for your Application
 ---
-Welcome to the **Quick Guide to Distributed Licensing with Software Potential**. The purpose of this document is to get you, a first time user, up and running quickly when using the Software Potential Service to implement floating/concurrent licensing of your .NET application.
-
-**NB: The Sp.Distributor NuGet package is available from v3.2.1950 so you will need to update your permutation if it is earlier than this.** 
+Welcome to the **Getting Started with Distributor Licensing** guide. The purpose of this document is to get you, a first time user, up and running quickly when using the Software Potential Service to implement floating/concurrent licensing of your .NET application.
 
 # Overview
 Software Potential Distributor allows you to quickly and effectively implement floating / concurrent licensing of your applications.  One or more Distributor instances can be quickly installed on the customers’ premises enabling:
