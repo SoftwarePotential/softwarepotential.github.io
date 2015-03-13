@@ -80,7 +80,7 @@ To install the packages required to protect and license code in a Visual Studio 
  3. Select the package **SoftwarePotential.Licensing-&lt;Product&gt;_&lt;Version&gt;** and click  the **Install** button to install in your project.
  4. Repeat for the other packages as required.  
 
-Once the above packages are installed, the Code Protector tooling will be invoked on the output assembly as part of each project build by default, with the result that methods you identify can be automatically licensed (or just protected) each time it is built. Please see [SoftwarePotential.Licensing-README](http://http://docs.softwarepotential.com/Licensing-README.html) for more detailed licensing guidance e.g. how to disable declarative licensing/protection on a build configuration, how to access license data programmatically etc.
+Once the above packages are installed, the Code Protector tooling will be invoked on the output assembly as part of each project build by default, with the result that methods you identify can be automatically licensed (or just protected) each time it is built. Please see [SoftwarePotential.Licensing-README](http://docs.softwarepotential.com/Licensing-README.html) for more detailed licensing guidance e.g. how to disable declarative licensing/protection on a build configuration, how to access license data programmatically etc.
 
 # Step 4: Configure Licensing Of Your Application
 
