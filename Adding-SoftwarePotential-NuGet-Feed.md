@@ -42,7 +42,7 @@ When you first attempt to access the feed Package Manager will typically prompt 
 
 If you don't wish to enter your credentials on each new VS session there are options to store your credentials in an appropriate NuGet config file [see [https://docs.nuget.org/consume/nuget-config-file#credentials-for-package-source](https://docs.nuget.org/consume/nuget-config-file#credentials-for-package-source)].
 
-**NOTE:** *In pre-release versions of Visual Studio 2015 NuGet does not prompt for credentials when accessing an authenticated NuGet feed such as ours [(see https://github.com/NuGet/Home/issues/246)](see https://github.com/NuGet/Home/issues/246). Until such time as that issue is resolved you will need to store the credentials in a NuGet config file such that they will be retrieved automatically when authenticating to the Software Potential feed.*
+**NOTE:** *When using Visual Studio Online or configuring Package Restore in a build rig you will need to store the credentials in a NuGet config file such that they will be retrieved automatically when authenticating to the Software Potential feed.*
 
 *To do this please run the following command in PowerShell with your Software Potential UserName and Password:*
 
