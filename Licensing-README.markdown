@@ -116,7 +116,7 @@ public static void MyMethodSubjectToAvailabilityOfASpecificFeatureOnTheIssuedLic
 public ScreenDefinition GenerateMenu()
 {
     // This single call will determine the set of currently available features this instant (including Feature Expiration checks etc.)
-    var features = SpAgent.Product.Features.ValidAvailable();
+    var features = SpAgent.Product.Features.Valid();
     return new ScreenDefinition {
     	new Title ( "Main Menu"),
     	new Button ( 
@@ -151,7 +151,7 @@ public ScreenDefinition GenerateMenu()
 public ReportOutput GenerateReport()
 {
     var result = GenerateBaseReportOutput();
-    if ( SpAgent.Product.Features.ValidAvailableContains( MyProduct_1.Features.GlobalAnalysis.Name ) )
+    if ( SpAgent.Product.Features.ValidContains( MyProduct_1.Features.GlobalAnalysis.Name ) )
     {
     	var data = LoadDataForGlobalAnalysis();
     	for ( int i = 0; i < 10000; i++ )
@@ -194,7 +194,7 @@ void CoordinateLicenseUpgrades()
     		TriggerLicensesExpiringWarningPage( expiringFeatures, validLicenses );
     	else
     	{
-    		var userHasLicenseIncludingAdvancedFeature = SpAgent.Product.Features.ValidAvailable().Contains( MyProduct_1.Features.GlobalAnalysis.Name );
+    		var userHasLicenseIncludingAdvancedFeature = SpAgent.Product.Features.ValidContains( MyProduct_1.Features.GlobalAnalysis.Name );
     		TriggerStartupBannerWithTeaserForAdvancedModulesIfNotYetUpgraded( userHasLicenseIncludingAdvancedFeature );
     	}
     }
