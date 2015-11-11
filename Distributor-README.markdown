@@ -34,10 +34,14 @@ The Distributor components are designed to fit into an appropriate installation/
 
 Typically the Distributor server components are packaged separately from your application, requiring separate installers for your protected application and your Distributor server components.  
 
-Whatever installation approach you take you need to ensure in your installation process that you:
+Whatever installation approach you take in your installation process you need to:
   
-- copy the `Slps.Distributor.Host` folder to an installation directory on the machine intended to host the Distributor Server.
+- ensure the .NET 3.5 Framework is installed on the machine intended to host the Distributor Server;
+- ensure the `Temporary ASP.NET Files` folder is created and permissioned appropriately*;
+- copy the `Slps.Distributor.Host` folder to an installation directory on the machine intended to host the Distributor Server;
 - call (elevated) the ``Install.cmd`` batch file in the ``Slps.Distributor.Hosts`` folder with the **-Install** option e.g. from the command line ```C:\<InstallationDirectory>\Slps.Distributor.Hosts\install.cmd -install```.
+
+[* If IIS is installed on the machine then the Temporary ASP.NET Files folder should be already initialized. If not then you can do this by calling (elevated) `C:\Windows\Microsoft.NET\Framework\v2.0.50727\aspnet_regiis.exe -ga “NT Authority\System"`]
 
 Our [Distributor installer sample](https://github.com/SoftwarePotential/samples/tree/master/Licensing/Desktop/Distributed/Installer) contains a WIX-based installer project. You just need to install your **SoftwarePotential.Distributor-&lt;PermutationShortCode&gt;** NuGet package and build the solution to generate a fully-functional Distributor installer.
 

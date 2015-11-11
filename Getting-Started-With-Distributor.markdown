@@ -47,7 +47,7 @@ In addition to enabling your application via the Distributor client components, 
 - Packaging the Distributor Server components for installation by your end customer 
 - Customizing Distributor settings as required.
 
-Please see [Sp.Distributor-README](http://docs.softwarepotential.com/Sp.Distributor-README.html) for more details on the packaging and installing of Distributor.
+Please see [Sp.Distributor-README](http://docs.softwarepotential.com/Distributor-README.html) for more details on the packaging and installing of Distributor.
 
 # Installing Distributor Server
 
