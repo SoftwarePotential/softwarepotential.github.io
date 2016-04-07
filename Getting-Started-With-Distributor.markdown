@@ -17,11 +17,18 @@ Software Potential Distributor allows you to quickly and effectively implement f
 Distributor has been generally available from the 3.1.1921 release of the Software Potential Service.  Distributor clients can interoperate with server instances of different versions from that release onward.
 
 # How it Works
-When an application is Distributor-aware, licenses can be activated and stored in a central Distributor service and then dynamically allocated across multiple deployed instances of the application. Each application instance includes a local` Sp.Agent` extension that must be configured to identify a Distributor Service instance. A service instance can be hosted locally on one of the client machines or, more typically, on a separate network-accessible machine.
+When an application is Distributor-aware, licenses can be activated and stored in a central Distributor service and then dynamically allocated across multiple deployed instances of the application. Each application instance includes a local `Sp.Agent` extension that must be configured to identify a Distributor Service instance. A service instance can be hosted locally on one of the client machines or, more typically, on a separate network-accessible machine.
 
-Whenever protected code that requires a license is encountered for the first time, the `Sp.Agent` component will query the Distributor service for the Feature required to execute the protected code. The service will yield a lease for the requested feature if there is one available (based on  the licenses installed in Distributor instance and allocations held by other competing application instances.)
+Whenever protected code that requires a license is encountered for the first time, the `Sp.Agent` component will query the Distributor service for the Feature required to execute the protected code. The service will yield a lease for the requested feature if there is one available (based on the licenses installed in Distributor instance and allocations held by other competing application instances.)
  
 Any such allocated leases are automatically renewed until such time as the application instance is closed (enabling execution not to be subject to a network round-trip every time).
+
+## Concurrency Limitations
+It is possible to set a limit on the number of instances of the licensed application that can be run concurrently for a given Distributor license.  The Distributor instance will refuse requests from additional application instances once the limit has been reached.
+
+If a Distributor license includes features then by default all instances of the application will have access to all included features.  However, it is possible to also set limits on individual features such that only a subset of the permitted concurrent instances can access individual features. The limit set at feature level must be equal to or less than the value set at the instance level.
+
+For example it is possible to issue a license with two features ("Feature A" and "Feature B") that allows x3 instances of a licensed application to run concurrently, where each instance is able to access Feature A but only one instance can access Feature B at any given time.
 
 ## Checkout / Disconnected Mode
 With Distributor, it is also possible to switch a protected application to Disconnected mode. This facility is useful where the application needs to run in a context where it will not be possible to communicate to a Distributor service instance for a period of time e.g. when the user is working remotely while out of the office or on vacation.
@@ -51,7 +58,7 @@ Please see [Sp.Distributor-README](http://docs.softwarepotential.com/Distributor
 
 # Installing Distributor Server
 
-Once installed the Distributor Service can be stopped/started/restarted via the [Services Snap-in](http://technet.microsoft.com/en-us/library/cc736564.aspx) (find the **Software Potential Distributor Service**, and right click to select **Stop**, **Start** or **Restart** as appropriate). It can also be managed using install.cmd batch file e.g. ``Install.cmd -stop``, ``Install.cmd -start``, ``install.cmd -install``, ``install.cmd -uninstall``
+Once installed the Distributor Service can be stopped/started/restarted via the [Services Snap-in](http://technet.microsoft.com/en-us/library/cc736564.aspx) (find the **Software Potential Distributor Service**, and right click to select **Stop**, **Start** or **Restart** as appropriate). It can also be managed using install.cmd batch file e.g. ``Install.cmd -stop``, ``Install.cmd -start``, ``install.cmd -install``, ``install.cmd -uninstall``.
 
 ## Configuring Distributor Server
 ### Distributor Endpoint
@@ -69,8 +76,8 @@ The admin portal allows your customer to:
 # Issuing a Distributor License
 Licenses suitable for Distributor are created using the Software Potential service in the same manner as any other license. The key differences with a Distributor license are:
 
-- The license is identified as **For use with Distributor only**.
-- The **Max Instances Per Client** value is set to the number of concurrent usages for the license being created i.e. a value of 2 here will allow two people to use your application at once within the Distributor system. 
+- The **Distributor** option must be selected in the **Environment and Locking** section.
+- In the **Usage Settings** section the **Max Concurrent Instances** value is set to the number of concurrent usages for the license being created i.e. a value of 2 here will allow two people to use your application at once within the Distributor system. 
 
 Distributor licenses can be created either:
 
@@ -82,24 +89,36 @@ To issue a Distributor license manually via the Software Potential portal:
 
 - Select **Manage Licenses** tab, then  **Issue New License** option
 - Select the **Product** to be licensed from the drop down list  
-- Add **Features** (if required)
-- In license limitations section, set the **Max Instances Per Client** value to the number of concurrent usages for the license being created i.e. a value of 2 here will allow two people to use your application simultaneously. 
+- Add **Features** (if required) and optionally set a Concurrent Usage limit on each by editing the feature and setting a **Concurrent Usage** value
 
-![MaxInstances](http://i.imgur.com/aU46r3V.png)
+ ![FeatureConcurrentUsage](http://i.imgur.com/r9Ger1X.png)
 
-- Check the **For use with Distributor only** option
+- In the **Environment and Locking** section, open the **Distributed** option and select either **Seat Based** or **Machine Based**
+- For a Named User license set the **Named User** checkbox and set an appropriate **Lock Days** value
 
-![IsDistributable](http://i.imgur.com/ZSLKFQQ.png)
+ ![IssueNamedUserLicense](http://i.imgur.com/g0DYQi5.png)
+
+ Please see [Getting Started With Named User Licenses](http://docs.softwarepotential.com/Getting-Started-With-Named-User-Licenses.html) for more information on Named User Distributor licenses.
+
+- In the **Usage Settings** section set the **Max Concurrent Instances** value to the number of concurrent instances of your application allowed e.g. a value of 2 here will allow two people to use your application simultaneously. 
+
+ ![SetConcurrentUsage](http://i.imgur.com/bUaUkvM.png)
 
 - Click **Issue License**. This will generate an Activation Key that your customer will need to subsequently activate the license in Distributor.
 
 ## Issuing a License Programmatically
-You automate the issuance of a Distributor license using the Software Potential web API at [http:\\https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc](https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc). To create a Distributor license progammatically you will need to:
+You automate the issuance of a Distributor license using the Software Potential web API at [https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc](https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc). To create a Distributor license progammatically you will need to:
 
 - Create a ```LicenseInfo``` object with: 
  - the ```Limitations.MaxConcurrentUsage``` property set to the number of concurrent usages for the license,  
  - the ```IsDistributor``` property set to **True**.
+
 - Call `CreateLicense()` with the `LicenseInfo` object you just created. 
+
+If you wish to issue a **Seat Based** license you will also need to add two Custom Tags: ```L:SeatBased``` and ```L:RequiresClient```. Without these tags the license is **Machine Based**.
+
+For a **Named User** license you will need to add the ```L:RequiresNamedUsers``` Custom Tag
+
 
 Alternatively, to avoid having to create the LicenseInfo object from scratch, you could first create a SKU for the Distributor license and issue your licenses progammatically based on that SKU:
 

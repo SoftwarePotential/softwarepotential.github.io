@@ -195,4 +195,25 @@ The following is a possible skeleton implementation:
         }
     }
 
+# Named User Configuration
+This configuration is only required when utilizing Named User licenses in Distributor. For more details on Named User licensing please see [Getting Started with Named User Licenses](http://docs.softwarepotential.com/Getting-Started-With-Named-User-Licenses.html)
+
+In order to consume a Named User license the client runtime needs to be configured to provide a username in all requests submitted to the Distributor service. The username provided will be compared against the list of assigned usernames in Distributor and only those requests with a matching username will be honoured.
+
+You provide a username by simply passing an appropriate lambda function to the `ConfigureNamedUserDiscovery` that must return a valid username string.
+
+The following sample implementation returns the Windows username of the user running the licensed application:
+
+	static partial void ConfigureNamedUserDiscovery( Action<Func<string>> configure)
+	{
+		configure( () => { return Environment.UserName; } );
+	}
+
+**Please note the user name must match exactly a username assigned to the Named User license in the Distributor web admin UI. You need to ensure those assigning Named Users are aware of the username format required**.
+
+## NotLicensedInvalidNamedUserException
+A `DistributorNotLicenseException` with an inner exception of `NotLicensedInvalidNamedUserException` will be thrown if the user configuration function returns NULL or throws an unhandled exception.
+
+
+
 
