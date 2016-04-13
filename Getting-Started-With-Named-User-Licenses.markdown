@@ -39,6 +39,10 @@ When issuing a Named User Distributor license a vendor must:
 
 ![IssueNamedUserLicense](http://i.imgur.com/g0DYQi5.png)
 
+The View Details page indicates the Minimum Assignment period set on a Named User license.
+
+![NamedUserLicenseDetails](http://i.imgur.com/oerTxXT.png)
+
 ## Maximum Number of Assigned Users
 For a given Named User license the total number of users that can be assigned cannot exceed the maximum concurrency limit set on the license e.g. only 5 users may be assigned to a license that allows only 5 concurrent seats.  All users will be assigned to the license for the Minimum Assignment Duration set on the license.
 
@@ -48,7 +52,7 @@ You automate the issuance of a Distributor license using the Software Potential 
 - Create a ```LicenseInfo``` object with: 
  - the ```Limitations.MaxConcurrentUsage``` property set to the number of concurrent usages for the license,  
  - the ```IsDistributor``` property set to **True**
- - the ```L:RequiresNamedUsers``` Custom Tag added
+ - the ```L:RequiresNamedUsers``` Custom Tag added and its value set to the required Minimum Assignment Duration (Lock Days) in Days
 - Call `CreateLicense()` with the `LicenseInfo` object you just created. 
 
 # Activating a Named User License
@@ -89,7 +93,6 @@ For example, consider a situation where the following licenses are activated for
 The total number of users that may be assigned is 8, comprising x5 with 30 Days duration and x3 with 60 Days duration.
 
 Should another license with x5 Seats and 60 Days duration be subsequently activated the  total number of uses that may be assigned changes to 13, of which x5 are 30 Days and x8 with 60 Days duration.
-
 
 # Managing Named Users Assignments
 Users are assigned to a Named User license via the Named User page in the Distributor web UI.
