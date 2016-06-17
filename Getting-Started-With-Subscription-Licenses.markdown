@@ -46,6 +46,35 @@ The following is an example of how the Expiry Date is set for a 1 Month Subscrip
 
 The key point is that the Expiry Date is always calculated from the Issue Date, not the Activation Date.
 
+# Issuing a Subscription License Programmatically
+To issue a Subscription License programmatically using the Software Potential web service, in addition to the usual license properties required you will need to set the the following  `LicenseInfo` properties specific to subscription licenses:
+
+- IsRenewable
+- Subscription Period
+- Grace Days
+- Autorenewal (Optional)
+- Start Date (Optional).
+
+## IsRenewable
+The `LicensInfo.IsRenewable` property must be set for a subscription license
+
+## Subscription Period
+Add the `L:SubscriptionPeriod` custom tag to `LicenseInfo.CustomTags` and set its value to the required subscription period in calendar months e.g. for an annual subscription period set the value to 12.
+
+## Grace Days
+Set the `LicenseInfo.Limitations.GracePeriod` to the required number of grace days allowed. 
+
+## Renewal
+The `L:SubscriptionRenewUntil` Custom Tag controls renewals of the subscription license. The subscription license can be renewed up to and including the date value set.
+
+Subscription licenses are issued with **Auto-renew** property set by default and you do this programmatically by not adding the `L:SubscriptionRenewUntil` tag to the license. To disable **Autorenew** on issue the `L:SubscriptionRenewUntil` tag must be added and its value set to the date of issue. 
+
+Please see the later section on Controlling Renewals for details on how to control ongoing renewals of the license once activated using the web service API calls.
+
+##StartDate
+By default the StartDate will default to the issue date.  However if you wish you can set a specific period start date using `LiceneInfo.Limitations.StartDate` e.g. to synchronize the subscription period of several subscription licenses issued on different dates. 
+
+
 # Renewals
 An attempt can be made to renew a Subscription License at any stage; the renewal request can be submitted:
 
